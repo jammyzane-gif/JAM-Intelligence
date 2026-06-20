@@ -645,6 +645,65 @@
     .sector-card:hover .sc-link { gap: 0.85rem; color: #a0102c; }
     .sc-link::after { content: '→'; }
     #sectors .label { font-size: 1.1rem; letter-spacing: 0.12em; }
+    #about .label {
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    /* About alternating text | photo rows */
+    .about-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+    .about-row--flip .about-media { order: -1; }
+    .about-h3 {
+      font-family: var(--f-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      font-weight: 500;
+      color: var(--off-white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .about-p {
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--txt-mid);
+    }
+    .about-ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 1.25rem;
+    }
+    .about-ul li {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: var(--txt-mid);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .about-ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.65em;
+      width: 8px; height: 1px;
+      background: var(--burgundy);
+    }
+    .about-photo {
+      aspect-ratio: 3/4;
+      background: var(--s2);
+      border: 1px solid var(--bd-lo);
+      border-radius: 2px;
+      width: 100%;
+    }
+    .work-section { margin-bottom: 5rem; }
 
     /* ─── INSIGHTS ─── */
     #insights {
@@ -872,6 +931,8 @@
       .nav-links { display: none; }
       .panel-grid { grid-template-columns: 1fr; }
       .panel-full { grid-column: 1; }
+      .about-row { grid-template-columns: 1fr; }
+      .about-row--flip .about-media { order: 0; }
       .work-grid { grid-template-columns: 1fr; }
       .values-grid { grid-template-columns: 1fr; }
       .sector-grid { grid-template-columns: 1fr; }
@@ -987,54 +1048,56 @@
     </div>
 
     <blockquote class="opening reveal d1">
-      Work at the intersection of markets, regulations and technology — translating AI complexity into decisions, facilitating understanding on using AI to elevate margins.
+      Work at the intersection of markets, regulations and technology, translating AI complexity into decisions, facilitating understanding on using AI to elevate margins.
     </blockquote>
 
-    <div class="panel-grid reveal d2">
-
-      <!-- What I Do -->
-      <div class="panel">
-        <div class="panel-eyebrow">What I Do</div>
-        <h3>Clarity at the Speed of Decision</h3>
-        <p>JAM Intelligence cuts through AI, EU regulations and market dynamics to extract the key information that matters most to business professionals and enterprises who don't have time to consume everything — turning them into clear, decision-ready insights rather than scattered pieces. Clarity and timeliness for every decision-making workload.</p>
+    <!-- What I Do — text left, photo right -->
+    <div class="about-row reveal d2">
+      <div class="about-text">
+        <span class="label">What I Do</span>
+        <h3 class="about-h3">Clarity at the Speed of Decision</h3>
+        <p class="about-p">JAM Intelligence cuts through AI, EU regulations and market dynamics to extract the key information that matters most to business professionals and enterprises who don't have time to consume everything — turning them into clear, decision-ready insights rather than scattered pieces. Clarity and timeliness for every decision-making workload.</p>
       </div>
+      <div class="about-media">
+        <img src="web_assets/01.png" alt="What I Do" class="about-photo" style="object-fit:cover;">
+      </div>
+    </div>
 
-      <!-- Why Different -->
-      <div class="panel">
-        <div class="panel-eyebrow">Why I'm Different</div>
-        <h3>Structure Beneath the Headlines</h3>
-        <p>With a socio-political background and quantitative analytical mindset, I look beneath headline numbers to the human and structural forces underneath. Statistical modelling. Evidence-based policy communication. That same framework now drives how I read markets.</p>
-        <ul>
+    <!-- Why I'm Different — photo left, text right -->
+    <div class="about-row about-row--flip reveal d2">
+      <div class="about-text">
+        <span class="label">Why I'm Different</span>
+        <h3 class="about-h3">Structure Beneath the Headlines</h3>
+        <p class="about-p">With a socio-political background and quantitative analytical mindset, I look beneath headline numbers to the human and structural forces underneath. Statistical modelling. Evidence-based policy communication. That same framework now drives how I read markets.</p>
+        <ul class="about-ul">
           <li>Monitoring intelligence across financial media, regulatory bodies and policy institutions — signal over noise</li>
           <li>Extracting metrics that actually matter, with context for what they mean rather than what they show</li>
           <li>Delivering tailored implications based on your specific need — sector regulation, market entry, AI value assessment</li>
         </ul>
       </div>
+      <div class="about-media">
+        <img src="web_assets/02.png" alt="Why I'm Different" class="about-photo" style="object-fit:cover;">
+      </div>
+    </div>
 
-      <!-- Work With Me -->
-      <div class="panel panel-full">
-        <div class="panel-eyebrow">Work With Me</div>
-        <h3>How We Collaborate</h3>
-        <div class="work-grid">
-          <div class="work-card">
-            <div class="work-num">01</div>
-            <h4>Problem-Solving</h4>
-            <p>When something isn't working, I find the bottleneck before it scales — then work backwards from the goal, not forwards from the first available solution.</p>
-          </div>
-          <div class="work-card">
-            <div class="work-num">02</div>
-            <h4>Relationship-Building</h4>
-            <p>I turn complexity into clarity, stay calm not chaos, and ensure no one gets left behind. Team-success is the goal; empathy is the key.</p>
-          </div>
-          <div class="work-card">
-            <div class="work-num">03</div>
-            <h4>Time-Efficiency</h4>
-            <p>Client delivery comes first. Team development sits alongside it. Personal skill-building fills the gaps — because growth compounds when priorities are right.</p>
-          </div>
+    <!-- Work With Me -->
+    <div class="work-section reveal d3">
+      <span class="label">Work With Me</span>
+      <div class="work-grid">
+        <div class="work-card">
+          <h4>Problem Solving</h4>
+          <p>When something isn't working, I find the bottleneck before it scales — then work backwards from the goal, not forwards from the first available solution.</p>
+        </div>
+        <div class="work-card">
+          <h4>Relationship-Building</h4>
+          <p>I turn complexity into clarity, stay calm not chaos, and ensure no one gets left behind. Team-success is the goal; empathy is the key.</p>
+        </div>
+        <div class="work-card">
+          <h4>Time Efficiency</h4>
+          <p>Client delivery comes first. Team development sits alongside it. Personal skill-building fills the gaps — because growth compounds when priorities are right.</p>
         </div>
       </div>
-
-    </div><!-- /panel-grid -->
+    </div>
 
     <!-- Values & Vision -->
     <div class="values-block reveal d3">
