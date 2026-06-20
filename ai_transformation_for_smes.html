@@ -76,69 +76,93 @@
     <div style="height:1px; background:rgba(255,255,255,0.14);"></div>
   </div>
 
-  <!-- Detail panel (placeholder) -->
+  <!-- Detail panel — 3 stacked rows -->
   <section style="max-width:1180px; margin:0 auto; padding:64px 56px 96px;">
-    <div style="display:grid; grid-template-columns:260px 1fr; gap:64px; align-items:start;">
 
+    <!-- Row 1: Metric bar -->
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:28px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.12);">
       <div>
-        <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#F89880; margin-bottom:16px;">Detail</div>
-        <h3 style="font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:30px; line-height:1.1; margin:0; color:#ffffff;">Reading the network</h3>
-        <p style="font-family:'Archivo', sans-serif; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.5); margin:18px 0 0;">Detailed commentary, methodology notes and interaction breakdowns will appear here.</p>
+        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">32</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Entities</div>
       </div>
-
       <div>
-        <!-- Stat row -->
-        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:28px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">32</div>
-            <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Entities</div>
-          </div>
-          <div>
-            <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">9</div>
-            <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Categories</div>
-          </div>
-          <div>
-            <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">11</div>
-            <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Interaction types</div>
-          </div>
-          <div>
-            <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">Live</div>
-            <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Cadence</div>
-          </div>
-        </div>
-
-        <!-- Legend -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:36px 56px; padding-top:40px;">
-          <div>
-            <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:18px;">Players — by category</div>
-            <div style="display:flex; flex-direction:column; gap:12px;">
-              <div style="display:flex; align-items:center; gap:12px;"><span style="width:12px; height:12px; border-radius:50%; background:#646b72; flex:none;"></span><span style="font-size:14px; color:rgba(255,255,255,0.82);">Companies</span></div>
-              <div style="display:flex; align-items:center; gap:12px;"><span style="width:12px; height:12px; border-radius:50%; background:#9cc0e0; flex:none;"></span><span style="font-size:14px; color:rgba(255,255,255,0.82);">Investors</span></div>
-              <div style="display:flex; align-items:center; gap:12px;"><span style="width:12px; height:12px; border-radius:50%; background:#9aa05d; flex:none;"></span><span style="font-size:14px; color:rgba(255,255,255,0.82);">Institutions</span></div>
-              <div style="display:flex; align-items:center; gap:12px;"><span style="width:12px; height:12px; border-radius:50%; background:#ecd793; flex:none;"></span><span style="font-size:14px; color:rgba(255,255,255,0.82);">Macro · Keywords · Regulators · Indices · Groups</span></div>
-            </div>
-          </div>
-          <div>
-            <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:18px;">Interactions — by family</div>
-            <div style="display:flex; flex-direction:column; gap:12px;">
-              <div style="display:flex; gap:14px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#F89880; flex:none; width:130px;">Capital Flows</span><span style="font-size:14px; color:rgba(255,255,255,0.66);">Extended, Acquired</span></div>
-              <div style="display:flex; gap:14px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#F89880; flex:none; width:130px;">Operational</span><span style="font-size:14px; color:rgba(255,255,255,0.66);">Allocated, Procured, Leased, Expensed</span></div>
-              <div style="display:flex; gap:14px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#F89880; flex:none; width:130px;">Performance</span><span style="font-size:14px; color:rgba(255,255,255,0.66);">Generates, Reached, Operates</span></div>
-              <div style="display:flex; gap:14px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#F89880; flex:none; width:130px;">Strategic Moves</span><span style="font-size:14px; color:rgba(255,255,255,0.66);">Targets, Formed</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Placeholder body -->
-        <div style="margin-top:44px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.12); display:flex; flex-direction:column; gap:13px;">
-          <div style="height:11px; width:100%; background:rgba(255,255,255,0.07); border-radius:2px;"></div>
-          <div style="height:11px; width:96%; background:rgba(255,255,255,0.07); border-radius:2px;"></div>
-          <div style="height:11px; width:88%; background:rgba(255,255,255,0.07); border-radius:2px;"></div>
-          <div style="height:11px; width:62%; background:rgba(255,255,255,0.07); border-radius:2px;"></div>
-        </div>
+        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">9</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Categories</div>
       </div>
-
+      <div>
+        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">11</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Interaction types</div>
+      </div>
+      <div>
+        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">Live</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Cadence</div>
+      </div>
     </div>
+
+    <!-- Row 2: Legend -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:36px 56px; padding:40px 0; border-bottom:1px solid rgba(255,255,255,0.12);">
+      <div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:18px;">Players — by category</div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:12px; height:12px; border-radius:50%; background:#646b72; flex:none;"></span><span style="font-size:14px; color:rgba(255,255,255,0.82);">Companies</span></div>
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:12px; height:12px; border-radius:50%; background:#9cc0e0; flex:none;"></span><span style="font-size:14px; color:rgba(255,255,255,0.82);">Investors</span></div>
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:12px; height:12px; border-radius:50%; background:#9aa05d; flex:none;"></span><span style="font-size:14px; color:rgba(255,255,255,0.82);">Institutions</span></div>
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:12px; height:12px; border-radius:50%; background:#ecd793; flex:none;"></span><span style="font-size:14px; color:rgba(255,255,255,0.82);">Macro · Keywords · Regulators · Indices · Groups</span></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:18px;">Interactions — by family</div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; gap:14px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#F89880; flex:none; width:130px;">Capital Flows</span><span style="font-size:14px; color:rgba(255,255,255,0.66);">Extended, Acquired</span></div>
+          <div style="display:flex; gap:14px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#F89880; flex:none; width:130px;">Operational</span><span style="font-size:14px; color:rgba(255,255,255,0.66);">Allocated, Procured, Leased, Expensed</span></div>
+          <div style="display:flex; gap:14px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#F89880; flex:none; width:130px;">Performance</span><span style="font-size:14px; color:rgba(255,255,255,0.66);">Generates, Reached, Operates</span></div>
+          <div style="display:flex; gap:14px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#F89880; flex:none; width:130px;">Strategic Moves</span><span style="font-size:14px; color:rgba(255,255,255,0.66);">Targets, Formed</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Detail — full width -->
+    <div style="padding-top:56px;">
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#F89880; margin-bottom:16px;">Detail</div>
+      <h3 style="font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:30px; line-height:1.1; margin:0 0 36px; color:#ffffff;">Reading the network</h3>
+
+      <div style="font-family:'Archivo', sans-serif; font-size:15px; line-height:1.8; color:rgba(255,255,255,0.68); max-width:780px; display:flex; flex-direction:column; gap:22px;">
+
+        <div>
+          <p style="margin:0 0 6px; color:#ffffff; font-weight:500;">What you're looking at</p>
+          <p style="margin:0;">This network visualisation maps the AI landscape as a system of players and interactions, showing not just who is connected, but how often and in what capacity, giving a structural picture of how capital, infrastructure and influence flow across the ecosystem.</p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <p style="margin:0;"><span style="color:#ffffff; font-weight:500;">Players</span> — the dots. Node size reflects cumulative interaction weight. Larger dots are more frequently active across events.</p>
+          <p style="margin:0;"><span style="color:#ffffff; font-weight:500;">Interactions</span> — the lines. Line thickness indicates frequency. Thicker lines mean the two players interact more often. Arrows show direction: from source to target.</p>
+        </div>
+
+        <p style="margin:0;">This is where the visualisation becomes analytical rather than decorative. Three things to look for:</p>
+
+        <div>
+          <p style="margin:0 0 6px; color:#ffffff; font-weight:500;">1. Hub dominance</p>
+          <p style="margin:0;">Nodes with the most and thickest connections (SpaceX/xAI, Anthropic, Capital Influx, Exit &amp; Liquidity) are the current gravitational centres of the AI economy. They are the actors whose moves propagate most widely across the system.</p>
+        </div>
+
+        <div>
+          <p style="margin:0 0 6px; color:#ffffff; font-weight:500;">2. Cluster tension</p>
+          <p style="margin:0;">The loose triangle of Companies, Investors and Financial Keywords is not decorative — it maps a structural dependency. Investors flow capital toward companies; companies generate metrics that feed back into financial keywords; financial keywords (Capital Influx, Exit &amp; Liquidity) then attract more investors. The visualisation makes this cycle visible.</p>
+        </div>
+
+        <div>
+          <p style="margin:0 0 6px; color:#ffffff; font-weight:500;">3. Peripheral signals</p>
+          <p style="margin:0;">Nodes on the outer edge, including China Gov, Iran War, EU/ENISA, Asia Capex Boom, appear smaller and less connected today, but their position signals emerging pressure points entering the system. Thin lines now can become thick lines in future editions.</p>
+        </div>
+
+        <div>
+          <p style="margin:0 0 6px; color:#ffffff; font-weight:500;">What this tells you that news headlines don't</p>
+          <p style="margin:0;">A single news story tells you one event happened. This visualisation tells you which players are structurally over-exposed, which relationships are intensifying over time, and where the next capital movement is most likely to originate, because you can see the pattern of repeated interaction, not just isolated moments.</p>
+        </div>
+
+      </div>
+    </div>
+
   </section>
 
 </div>
