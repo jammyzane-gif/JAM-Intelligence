@@ -14,6 +14,12 @@
   @keyframes jam-ring0 { 0% { transform: rotate(0deg) scale(1); opacity:.8; } 50% { transform: rotate(180deg) scale(1.05); opacity:1; } 100% { transform: rotate(360deg) scale(1); opacity:.8; } }
   @keyframes jam-ring1 { 0% { transform: rotate(0deg) scale(1); opacity:.8; } 50% { transform: rotate(180deg) scale(1.10); opacity:1; } 100% { transform: rotate(360deg) scale(1); opacity:.8; } }
   @keyframes jam-ring2 { 0% { transform: rotate(0deg) scale(1); opacity:.8; } 50% { transform: rotate(180deg) scale(1.15); opacity:1; } 100% { transform: rotate(360deg) scale(1); opacity:.8; } }
+  .jam-brief-card { display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.12); border-radius:2px; padding:28px; background:rgba(255,255,255,0.02); transition:border-color 0.25s ease, transform 0.25s ease; }
+  .jam-brief-card:hover { border-color:rgba(248,152,128,0.6); transform:translateY(-3px); }
+  .jam-brief-card:hover .jam-brief-title { color:#F89880; }
+  .jam-brief-link { color:#F89880; text-decoration:none; transition:opacity 0.2s ease; }
+  .jam-brief-link:hover { opacity:0.75; }
+  @media (max-width: 760px) { #sectorBriefs { grid-template-columns: 1fr !important; } }
 </style>
 </head>
 <body>
@@ -165,6 +171,39 @@
 
   </section>
 
+  <!-- Divider -->
+  <div style="max-width:1180px; margin:0 auto; padding:0 56px;">
+    <div style="height:1px; background:rgba(255,255,255,0.14);"></div>
+  </div>
+
+  <!-- Insights hub — latest briefs from this sector -->
+  <section style="max-width:1180px; margin:0 auto; padding:64px 56px 96px;">
+    <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#F89880; margin-bottom:16px;">Insights</div>
+    <h3 style="font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:30px; line-height:1.1; margin:0 0 36px; color:#ffffff;">Latest briefs from this sector</h3>
+
+    <div id="sectorBriefs" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:28px;"></div>
+
+    <div style="display:flex; gap:40px; flex-wrap:wrap; margin-top:40px; font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:1.5px; text-transform:uppercase;">
+      <a class="jam-brief-link" href="insights_ai.html">View all AI Transformation briefs →</a>
+      <a class="jam-brief-link" href="insights.html">Explore the full insights hub →</a>
+    </div>
+  </section>
+
 </div>
+
+<script src="articles.js"></script>
+<script>
+  document.getElementById('sectorBriefs').innerHTML = articlesBySector('ai').map(function (id) {
+    var a = ARTICLES[id];
+    return '<a class="jam-brief-card" href="insight.html?id=' + id + '">'
+      + '<div style="display:flex; align-items:center; gap:16px; margin-bottom:16px; font-family:\'IBM Plex Mono\', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;">'
+      +   '<span style="color:#F89880;">' + a.tag + '</span>'
+      +   '<span style="color:rgba(255,255,255,0.5);">' + a.date + '</span>'
+      + '</div>'
+      + '<div class="jam-brief-title" style="font-family:\'Newsreader\', Georgia, serif; font-weight:500; font-size:24px; line-height:1.2; color:#ffffff; margin-bottom:12px; transition:color 0.25s ease;">' + a.title + '</div>'
+      + '<p style="font-family:\'Archivo\', sans-serif; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.66); margin:0; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">' + a.dek + '</p>'
+      + '</a>';
+  }).join('');
+</script>
 </body>
 </html>

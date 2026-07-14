@@ -1111,15 +1111,15 @@
 
     <div class="insights-grid">
 
-      <!-- Featured -->
-      <a class="insight-card insight-featured reveal" href="insight.html?id=ai-stress-points-capital">
+      <!-- Featured: newest brief overall, rendered from articles.js -->
+      <a class="insight-card insight-featured reveal" href="#" id="featuredCard">
         <div>
           <div class="ic-meta">
-            <span class="ic-tag">AI Transformation</span>
-            <span class="ic-date">1 Jul 2026</span>
+            <span class="ic-tag" id="featuredTag">—</span>
+            <span class="ic-date" id="featuredDate">—</span>
           </div>
-          <h3>AI's Three Stress Points in Capital Markets</h3>
-          <p>The AI bubble is treated as one question; it is really real-economy software disruption transmitting into three capital-market structures — public equity, private equity, and credit — that absorb it differently and in sequence. The noise is loudest where the danger is least.</p>
+          <h3 id="featuredTitle">Loading…</h3>
+          <p id="featuredDek"></p>
           <span class="ic-link">Read Brief</span>
         </div>
         <div class="ic-visual" aria-hidden="true">
@@ -1186,9 +1186,16 @@
 
 <script src="articles.js"></script>
 <script>
-  /* Latest insight per sector (excluding the featured card) */
+  /* Featured card: newest brief overall; grid below: latest per sector */
   (function () {
-    const FEATURED = 'ai-stress-points-capital';
+    const FEATURED = Object.keys(ARTICLES)[0];
+    const f = ARTICLES[FEATURED];
+    document.getElementById('featuredCard').href = 'insight.html?id=' + FEATURED;
+    document.getElementById('featuredTag').textContent = f.tag;
+    document.getElementById('featuredDate').textContent = f.date;
+    document.getElementById('featuredTitle').textContent = f.title;
+    document.getElementById('featuredDek').textContent = f.dek;
+
     const cards = Object.keys(SECTORS)
       .map(key => articlesBySector(key).filter(id => id !== FEATURED)[0])
       .filter(Boolean);
