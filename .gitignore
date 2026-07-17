@@ -15,3 +15,8 @@ data/
 gephi/jam_*_network.svg
 gephi/jam_*_network.gephi
 gephi/scripts/__pycache__/
+
+# Internal docs — tracked ONLY on the origin-only 'internal-docs' branch
+# (see docs/backup_internal_docs.sh); never on main, so never in the public repo
+CLAUDE.md
+docs/
