@@ -90,19 +90,19 @@
     <!-- Row 1: Metric bar -->
     <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:28px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.12);">
       <div>
-        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">32</div>
+        <div id="mEntities" style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">—</div>
         <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Entities</div>
       </div>
       <div>
-        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">9</div>
+        <div id="mCategories" style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">—</div>
         <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Categories</div>
       </div>
       <div>
-        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">11</div>
+        <div id="mEdgeTypes" style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">—</div>
         <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Interaction types</div>
       </div>
       <div>
-        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">Live</div>
+        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">Weekly</div>
         <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Cadence</div>
       </div>
     </div>
@@ -203,6 +203,9 @@
     var d = new Date(ed.date + 'T00:00:00');
     document.getElementById('netUpdated').textContent = 'Last updated ' +
       d.getDate() + ' ' + d.toLocaleString('en-GB', { month: 'long' }) + ' ' + d.getFullYear() + '.';
+    if (ed.nodes) document.getElementById('mEntities').textContent = ed.nodes;
+    if (ed.categories) document.getElementById('mCategories').textContent = ed.categories;
+    if (ed.edgeTypes) document.getElementById('mEdgeTypes').textContent = ed.edgeTypes;
   })();
 
   document.getElementById('sectorBriefs').innerHTML = articlesBySector('ai').map(function (id) {

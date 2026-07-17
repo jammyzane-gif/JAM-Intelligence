@@ -15,7 +15,9 @@ const NETWORKS = {
         "file": "web_assets/jam_ai_network_2026-07-17.png",
         "thumb": "web_assets/archive/thumbs/jam_ai_network_2026-07-17.png",
         "events": 170,
-        "nodes": 75
+        "nodes": 75,
+        "categories": 9,
+        "edgeTypes": 13
       },
       {
         "date": "2026-06-12",
@@ -36,7 +38,9 @@ const NETWORKS = {
         "file": "web_assets/jam_economy_network_2026-07-17.png",
         "thumb": "web_assets/archive/thumbs/jam_economy_network_2026-07-17.png",
         "events": 48,
-        "nodes": 24
+        "nodes": 24,
+        "categories": 6,
+        "edgeTypes": 12
       }
     ]
   },

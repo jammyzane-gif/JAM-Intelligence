@@ -95,7 +95,7 @@
         <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Players</div>
       </div>
       <div>
-        <div style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">13</div>
+        <div id="mEdgeTypes" style="font-family:'Newsreader', Georgia, serif; font-size:42px; line-height:1; color:#ffffff;">—</div>
         <div style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:10px;">Interaction types</div>
       </div>
       <div>
@@ -193,6 +193,7 @@
       d.getDate() + ' ' + d.toLocaleString('en-GB', { month: 'long' }) + ' ' + d.getFullYear() + '.';
     if (ed.events) document.getElementById('mEvents').textContent = ed.events;
     if (ed.nodes) document.getElementById('mNodes').textContent = ed.nodes;
+    if (ed.edgeTypes) document.getElementById('mEdgeTypes').textContent = ed.edgeTypes;
   })();
 
   document.getElementById('sectorBriefs').innerHTML = articlesBySector('eu').map(function (id) {

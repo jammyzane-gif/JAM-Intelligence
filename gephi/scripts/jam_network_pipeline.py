@@ -31,6 +31,7 @@ NETWORKS = {
         "out": "jam_ai_network",
         "sectorPage": "ai_transformation_for_smes.html",
         "archivePage": "network_archive_ai.html",
+        "sizing": "tiered",   # dense net: bucket sizes so differences read clearly
         "enabled": True,
     },
     "economy": {
@@ -39,6 +40,7 @@ NETWORKS = {
         "out": "jam_economy_network",
         "sectorPage": "eu_tech_economics.html",
         "archivePage": "network_archive_eu.html",
+        "sizing": "linear",   # small net reads well with plain 15–45 scaling
         "enabled": True,
     },
     # Flip enabled to True (and create the sector/archive pages) when enough
@@ -56,6 +58,9 @@ NETWORKS = {
 # The pre-pipeline AI export referenced by index.html's featured card — copy,
 # never move, so the homepage image keeps working.
 PINNED_FILES = {"web_assets/jam_ai_landscape_network_4k.png"}
+
+# Edge colour: bright cyan — burgundy #800020 blended into the dark page background.
+EDGE_COLOR = "#4EE2EC"
 
 # ---------------------------------------------------------------- gephi REST
 def call(path, payload=None, method="POST"):
@@ -360,10 +365,26 @@ def build_network(key, cfg, sheets, registry, manifest, force=False):
             positions.append({"id": n, "x": rad * math.cos(ang), "y": rad * math.sin(ang)})
     must("/graph/nodes/positions", {"positions": positions})
 
-    SMIN, SMAX = 15.0, 45.0
-    for n in names:
-        frac = 0.0 if cwmax == cwmin else (cumw[n] - cwmin) / (cwmax - cwmin)
-        call("/appearance/node/size", {"id": n, "size": round(SMIN + frac * (SMAX - SMIN), 2)})
+    if cfg.get("sizing") == "tiered":
+        # Tiered sizing so differences read clearly:
+        #   repeats 1–3  -> SMALL, repeats 4–8 -> MED (1:3 ratio),
+        #   repeats >8   -> grows with the repeat count, capped at TOP for the biggest hub.
+        SMALL, MED, TOP = 12.0, 36.0, 64.0
+        for n in names:
+            w = cumw[n]
+            if w <= 3:
+                size = SMALL
+            elif w <= 8:
+                size = MED
+            else:
+                size = MED + (w - 8) / max(cwmax - 8, 1) * (TOP - MED) if cwmax > 8 else MED
+            call("/appearance/node/size", {"id": n, "size": round(size, 2)})
+    else:
+        # linear: plain min–max scaling by cumulative weight
+        SMIN, SMAX = 15.0, 45.0
+        for n in names:
+            frac = 0.0 if cwmax == cwmin else (cumw[n] - cwmin) / (cwmax - cwmin)
+            call("/appearance/node/size", {"id": n, "size": round(SMIN + frac * (SMAX - SMIN), 2)})
 
     FA2 = {
         "ForceAtlas2.strongGravityMode.name": True,
@@ -381,7 +402,7 @@ def build_network(key, cfg, sheets, registry, manifest, force=False):
     for n in names:
         r, g, b = hex_rgb(random.choice(palette_for(ntype(n))))
         call("/appearance/node/color", {"id": n, "r": r, "g": g, "b": b})
-    br, bg_, bb = hex_rgb("#800020")
+    br, bg_, bb = hex_rgb(EDGE_COLOR)
     for (s, t) in agg:
         call("/appearance/edge/color", {"source": s, "target": t, "r": br, "g": bg_, "b": bb})
 
@@ -417,25 +438,34 @@ def build_network(key, cfg, sheets, registry, manifest, force=False):
     subprocess.run(["sips", "-Z", "480", png_abs, "--out", os.path.join(ROOT, thumb_rel)],
                    capture_output=True, check=True)
 
-    # archive the outgoing edition's file (copy pinned files, move the rest)
-    if net["editions"]:
-        prev_ed = net["editions"][0]
-        src_abs = os.path.join(ROOT, prev_ed["file"])
-        if os.path.exists(src_abs) and not prev_ed["file"].startswith("web_assets/archive/"):
-            dst_rel = f"web_assets/archive/{os.path.basename(prev_ed['file'])}"
-            os.makedirs(ARCHIVE, exist_ok=True)
-            if prev_ed["file"] in PINNED_FILES:
-                shutil.copy2(src_abs, os.path.join(ROOT, dst_rel))
-            else:
-                shutil.move(src_abs, os.path.join(ROOT, dst_rel))
-            prev_ed["file"] = dst_rel
-
-    net["editions"].insert(0, {
+    entry = {
         "date": stamp, "file": png_rel, "thumb": thumb_rel,
         "events": len(events), "nodes": len(names),
-    })
+        "categories": len({ntype(n) for n in names}),
+        "edgeTypes": len({verb for _, _, _, verb, _ in events if verb}),
+    }
+    same_day = net["editions"] and net["editions"][0]["date"] == stamp
+    if same_day:
+        # re-run on the same day = refresh the current edition in place
+        net["editions"][0] = entry
+    else:
+        # archive the outgoing edition's file (copy pinned files, move the rest)
+        if net["editions"]:
+            prev_ed = net["editions"][0]
+            src_abs = os.path.join(ROOT, prev_ed["file"])
+            if os.path.exists(src_abs) and not prev_ed["file"].startswith("web_assets/archive/"):
+                dst_rel = f"web_assets/archive/{os.path.basename(prev_ed['file'])}"
+                os.makedirs(ARCHIVE, exist_ok=True)
+                if prev_ed["file"] in PINNED_FILES:
+                    shutil.copy2(src_abs, os.path.join(ROOT, dst_rel))
+                else:
+                    shutil.move(src_abs, os.path.join(ROOT, dst_rel))
+                prev_ed["file"] = dst_rel
+        net["editions"].insert(0, entry)
     save_manifest(manifest)
-    print(f"  ✓ {png_rel} ({len(events)} events, {len(names)} nodes) — manifest updated")
+    print(f"  ✓ {png_rel} ({len(events)} events, {len(names)} nodes, "
+          f"{entry['categories']} categories, {entry['edgeTypes']} edge types)"
+          f"{' — same-day refresh' if same_day else ''} — manifest updated")
     return True
 
 # ---------------------------------------------------------------- main
